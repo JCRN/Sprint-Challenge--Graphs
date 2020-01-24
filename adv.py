@@ -35,26 +35,26 @@ def traversal(player, world, graph):
     # Create a path list (p) - holds the cardinal directions
     p = []    
     
-    # Create a room stack (s) and add the starting room - keeps track of current room
+    # Create a room stack (s) and add the starting room 
     s = []
     s.append(player.current_room.id)
     
     # Create a set for visited rooms (v) 
     v = set()    
         
-    # While all of the rooms (len(v)) have not been visited
+    # While all of the rooms in the world have not been visited
     while len(v) != len(world.rooms):
+        
         # Get the current room from the stack (s)
         cur = s[-1]
         # Add the current room to visited (v)
         v.add(cur)
         
-        # Handle the connecting rooms
-        # Create a room queue (q) for a BFT 
+        # Handle all of the connecting rooms:
+        # Create a connected room queue (q) 
         q = []        
         
-        # Get the connecting rooms (cr) from the graph
-        # i.e. {'n': 361, 'e': 321, 'w': 386}
+        # Get the connecting rooms (cr) from the graph i.e. {'n': 361, 'e': 321, 'w': 386}
         cr = graph[cur][1] 
         
         # Check for connected, unvisited rooms:
@@ -64,7 +64,6 @@ def traversal(player, world, graph):
             if y not in v:
                 q.append(y)
         
-        # Get the next room:
         # If there are rooms in the queue (q), get the next room from the queue (q)       
         if len(q):
             # Dequeue the next room (q)
